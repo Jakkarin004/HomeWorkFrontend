@@ -1,0 +1,14 @@
+<div class="tax-content">
+    <div class="field">
+        <p>2. Total VAT to be remitted (7% of 1.)</p>
+    </div>
+    <div class="field wrapper">
+        <input class="form-control text-right" type="text" name="price" [(ngModel)]="price" (focus)="focusUse()"
+            (blur)="blurMode()" />
+        <span class="inside">THB</span>
+        <div *ngIf="check" class="text-danger mt-1">
+            <small>Invalid Tax +- 20</small>
+        </div>
+    </div>
+
+</div>

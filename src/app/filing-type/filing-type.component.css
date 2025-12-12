@@ -1,0 +1,11 @@
+.body-content-check{
+    display: grid;
+    grid-template-columns: 200px 200px;
+    /* border: 1px solid red; */
+}
+
+@media (max-width: 500px) {
+    .body-content-check {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,211 @@
+/* main */
+.mian-content {
+    max-width: 1000px;
+    width: 90%; 
+    margin: 5rem auto;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* header */
+.header-content {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+}
+
+.header-content .header-content-text {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.header-content .header-content-icon {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    position: relative;
+}
+
+.header-content .header-content-icon::after {
+    content: '';
+    position: absolute;
+    background-color: rgb(136, 136, 136);
+    top: 20px;
+    width: 140px;
+    height: 2px;
+    bottom: 0;
+    left: 85px;
+    right: 150px;
+    z-index: -1;
+    
+}
+
+.header-content .header-content-icon .icon {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+    color: #939393;
+    position: relative;
+}
+
+.header-content .header-content-icon .icon i {
+    font-size: 25px;
+    /* background-color: white; */
+    /* border: 1px solid red; */
+}
+
+
+.body-content{
+    margin-top: 3rem;
+    border: 1px solid rgb(114, 114, 114);
+    /* border: 1px solid red; */
+    border-radius: 10px;
+    max-width: 800px;
+    width: 90%;
+    padding: 3rem;
+}
+
+.tax-content{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* border: 1px solid red; */
+    align-items: last baseline;
+}
+.tax-content p{
+   text-decoration: underline;
+}
+
+
+.month-content-select{
+    display: grid;
+    grid-template-columns: 200px 200px 150px;
+    gap: 0.5rem;
+    align-items: last baseline;
+    /* border: 1px solid red; */
+}
+
+.month-content-select .month-content-select-type{
+    margin-left: 2rem;
+}
+
+.button-contetn{
+    /* border: 1px solid red; */
+    max-width: 800px;
+    width: 90%;
+    /* padding: 3rem; */
+    margin-top: 2rem;
+    display: grid;
+    justify-content: left;
+    grid-template-columns:120px 120px;
+}
+
+.button-contetn button{
+    width: 100px;
+    padding: 0.5rem;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+}
+
+.button-contetn .button-dark button{
+    /* border: 1px solid red; */
+    color: white;
+    background-color: black;
+}
+
+
+.button-contetn-center{
+    /* border: 1px solid red; */
+    max-width: 800px;
+    width: 90%;
+    /* padding: 3rem; */
+    margin-top: 2rem;
+    display: grid;
+    justify-content: center;
+    /* grid-template-columns:120px 120px; */
+    
+}
+
+.button-contetn-center button{
+    width: 200px;
+    padding: 0.5rem;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+}
+
+.button-contetn-center .button-dark button{
+    /* border: 1px solid red; */
+    color: white;
+    background-color: black;
+}
+
+
+.pageNext{
+    /* border: 1px solid red; */
+}
+
+.pageNext-checkbox{
+    display: grid;
+    grid-template-columns: 200px 200px;
+}
+
+.pageNext-tax{
+    display: grid;
+    grid-template-columns: 500px 180px;
+    /* justify-content: space-between; */
+    /* border: 1px solid red; */
+    align-items: center;
+}
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 20px;
+  width: 480px;
+  border-radius: 8px;
+}
+
+
+@media (max-width: 768px) {
+    .header-content {
+        width: 100%;
+    }
+
+    .header-content .header-content-icon {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .body-content, .button-contetn, .button-contetn-center {
+        width: 95%;
+        padding: 2rem;
+    }
+
+    .month-content-select {
+        grid-template-columns: 1fr;
+    }
+
+    .pageNext-checkbox, .pageNext-tax {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}

@@ -1,0 +1,11 @@
+<div class="month-content">
+    <div class="">
+        <div class="d-flex">VAT Month <p class="text-danger">*</p></div>
+    </div>
+        <div class="field">
+            <select [(ngModel)]="monthSelect" (ngModelChange)="resMonth($event)"  class="form-control" aria-label="Default select example">
+                <option value="" disabled selected>Select Month</option>
+                <option *ngFor="let month of result" [value]="month.monthSelect" >{{month.monthAll}}</option>
+            </select>
+    </div>
+</div>

@@ -1,0 +1,169 @@
+<app-navbar></app-navbar>
+
+<!-- main -->
+<div class="mian-content">
+    <!-- header -->
+    <div class="header-content">
+        <div class="header-content-text">
+            <h1>Submit Tax Filing</h1>
+        </div>
+        <div class="header-content-icon">
+            <div class="icon">
+                <i *ngIf="checkPage === 0" class="text-center  bi-1-circle"></i>
+                <i *ngIf="checkPage === 1" class="text-center bi-1-circle"></i>
+                <p>Iput Detail</p>
+            </div>
+            <div class="icon">
+                <i *ngIf="checkPage === 0" class="text-center bi bi-2-circle"></i>
+                <i *ngIf="checkPage === 1" class="text-center bi bi-2-circle"></i>
+                <p>Reviews & Confirm</p>
+            </div>
+        </div>
+    </div>
+    <div class="body-content">
+        <div class="" *ngIf="checkPage == 0">
+            <app-filing-type (selectDetail)="responFilingType($event)"></app-filing-type>
+            <div class="month-content-select">
+                <app-month (selectDetail)="responMonth($event)"></app-month>
+                <app-year (selectDetail)="responYear($event)"></app-year>
+                <div class="month-content-select-type" *ngIf="filingType == '1'">
+                    <div class="">
+                        <p>Type*</p>
+                    </div>
+                    <div class="field">
+                        <select class="form-control" aria-label="Default select example">
+                            <option value="01">On-Time</option>
+                            <option value="02">Run-Time</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5">
+                <div class="tax-content">
+                    <h3>2. Tax Computation </h3>
+                    <p class="text-decoration-underline">View Exchange Rate</p>
+                </div>
+                <hr>
+                <p class="font-weight-bold">Provide total of taxable electronic service</p>
+            </div>
+            <div class="">
+                <app-sale-amount (selectDetail)="responAmountVat($event)"></app-sale-amount>
+                <app-tax-amount [vat]="vat" (selectDetail)="responVat($event)"></app-tax-amount>
+                <p class="font-weight-bold" *ngIf="filingType == '1'">In case of late filling and payment, or
+                    additional filling</p>
+                <div class="" *ngIf="filingType == '1'">
+                    <app-surcharge [vat]="vat" (selectSC)="responSurcharge($event)"></app-surcharge>
+                    <app-penalty [vat]="vat" (selectPC)="responPenalty($event)"></app-penalty>
+                    <app-total-amount [vat]="vat" [surcharge]="surcharge" [penalty]="penalty"
+                        (selectDetail)="responTotal($event)"></app-total-amount>
+                </div>
+            </div>
+        </div>
+
+        <!-- หน้าสอง -->
+        <div class="pageNext" *ngIf="checkPage == 1">
+            <div class="">
+                <h4 class="font-weight-bold">Tax Filing Detail</h4>
+                <hr>
+            </div>
+            <div class="">
+                <div class="pageNext-checkbox">
+                    <p class="font-weight-bold">Type of filing</p>
+                    <p *ngIf="filingType === '0'">Ordinary Filing</p>
+                    <p *ngIf="filingType === '1'">Additional Filing</p>
+                </div>
+                <div class="pageNext-checkbox">
+                    <p class="font-weight-bold">VAT Month</p>
+                    <p>{{month}} {{year}}</p>
+                </div>
+            </div>
+            <div class="mt-4">
+                <h4 class="font-weight-bold">Tax Computation</h4>
+                <hr>
+            </div>
+            <div class="pageNext-tax">
+                <p class="font-weight-bold">Total value of taxable electronic service exclusive of VAT</p>
+                <p class="text-right">{{saleAmount}} THB</p>
+            </div>
+            <div class="pageNext-tax">
+                <div class="">
+                    <div class="font-weight-bold">Total VAT to be remitted <p class="font-weight-normal">(7% of Total
+                            value of taxable electronic service exclusive of VAT)</p>
+                    </div>
+                </div>
+                <div class="text-right ">
+                    <p>{{taxAmount}} THB</p>
+                </div>
+            </div>
+            <div class="pageNext-tax" *ngIf="filingType === '1'">
+                <p class="font-weight-bold">Surcharge</p>
+                <p class="text-right">{{surcharge}} THB</p>
+            </div>
+            <div class="pageNext-tax" *ngIf="filingType === '1'">
+                <p class="font-weight-bold">Penalty</p>
+                <p class="text-right">{{penalty}} THB</p>
+            </div>
+            <div class="pageNext-tax">
+                <p class="font-weight-bold">Total Amount Payable</p>
+                <p class="font-weight-bold text-right h5" *ngIf="filingType === '0'">{{sumAT}} THB</p>
+                <p class="font-weight-bold text-right h5" *ngIf="filingType === '1'">{{totalAmount}} THB</p>
+            </div>
+            <div class="mt-5">
+                <h3>Declaration</h3>
+                <hr>
+            </div>
+            <div class="">
+                <p>I hereby certify that information given above are true and correct and agree to be bound by such
+                    information.</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="button-contetn" *ngIf="checkPage == 0">
+        <div class="">
+            <button (click)="pageZero()">Back</button>
+        </div>
+        <div class="button-dark">
+            <button (click)="pageOne()">Next</button>
+        </div>
+        <div *ngIf="check" class="text-danger mt-1">
+            <small>Invalid Date</small>
+        </div>
+    </div>
+
+    <div class="button-contetn-center" *ngIf="checkPage == 1">
+        <div class="button-dark">
+            <button (click)="openTaxModal()">Confirm and Submit</button>
+        </div>
+        <div class="mt-2">
+            <button (click)="pageZeroList()">Back</button>
+        </div>
+    </div>
+
+    <!-- Modal แสดง taxData -->
+    <div bsModal #taxModal="bs-modal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Tax Data (JSON)</h5>
+                    <button type="button" class="close" (click)="closeTaxModal()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <pre>{{ taxDataJson }}</pre>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="closeTaxModal()">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

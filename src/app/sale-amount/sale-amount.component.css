@@ -1,0 +1,22 @@
+.sale-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid red; */
+     flex-wrap: wrap;
+}
+
+.wrapper{
+    position: relative;
+}
+
+.inside{
+    position: absolute;
+    right: 10px;
+    top: 20%;
+}
+
+.wrapper input{
+    padding-right: 50px;
+}
+

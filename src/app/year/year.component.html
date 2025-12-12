@@ -1,0 +1,7 @@
+<div class="field">
+    <select [(ngModel)]="year" (ngModelChange)="resYear($event)" class="form-control" aria-label="Default select example">
+        <!-- <option value="1">2020</option> -->
+         <option value="" disabled selected>Select Year</option>
+        <option *ngFor="let year of result" [value]="year">{{year}}</option>
+    </select>
+</div>
